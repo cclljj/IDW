@@ -5,8 +5,13 @@
 [![Architecture](https://img.shields.io/badge/Architecture-ES%20Modules-1f6feb)](#architecture)
 [![Deploy](https://img.shields.io/badge/Deploy-Static%20Hosting-0ea5e9)](#deployment)
 [![E2E](https://img.shields.io/badge/E2E-Playwright-45ba63?logo=playwright&logoColor=white)](https://playwright.dev/)
+[![Demo](https://img.shields.io/badge/Demo-Online-22c55e)](https://pm25.lass-net.org/GIS/IDW/)
 
 Modernized IDW visualization for PM2.5 datasets under `/GIS/IDW/`.
+
+## Live Demo
+
+- Production: [https://pm25.lass-net.org/GIS/IDW/](https://pm25.lass-net.org/GIS/IDW/)
 
 ## Highlights
 
