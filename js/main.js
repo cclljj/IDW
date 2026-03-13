@@ -13,16 +13,12 @@ const dom = {
   app: document.getElementById("app"),
   map: document.getElementById("map"),
   status: document.getElementById("status"),
-  modeChips: document.getElementById("mode-chips"),
   legend: document.getElementById("legend"),
   displayPanel: document.getElementById("display-panel"),
   logoDock: document.getElementById("logo-dock"),
   noticePanel: document.getElementById("notice-panel"),
   noticeTitle: document.getElementById("notice-title"),
-  noticeBody: document.getElementById("notice-body"),
-  lastUpdated: document.getElementById("last-updated"),
-  mobileToggle: document.getElementById("mobile-panel-toggle"),
-  leftPanel: document.getElementById("left-panel")
+  noticeBody: document.getElementById("notice-body")
 };
 
 const debugState = {
@@ -37,24 +33,6 @@ function setStatus(message, level = "normal") {
   dom.status.textContent = message;
   dom.status.classList.toggle("is-warning", level === "warning");
   dom.status.classList.toggle("is-error", level === "error");
-}
-
-function renderModeChips(mode) {
-  const items = [
-    ["notice", mode.notice],
-    ["contour", mode.contour],
-    ["humidity", mode.humidity],
-    ["www", mode.www]
-  ];
-
-  dom.modeChips.innerHTML = "";
-
-  items.forEach(([name, enabled]) => {
-    const chip = document.createElement("span");
-    chip.className = `mode-chip${enabled ? " is-enabled" : ""}`;
-    chip.textContent = `${name}: ${enabled ? "yes" : "no"}`;
-    dom.modeChips.appendChild(chip);
-  });
 }
 
 function summarizeValues(points) {
@@ -84,18 +62,6 @@ function summarizeValues(points) {
   };
 }
 
-function setupMobilePanel() {
-  if (!dom.mobileToggle || !dom.leftPanel) {
-    return;
-  }
-
-  dom.mobileToggle.addEventListener("click", () => {
-    const open = !dom.leftPanel.classList.contains("is-mobile-open");
-    dom.leftPanel.classList.toggle("is-mobile-open", open);
-    dom.mobileToggle.setAttribute("aria-expanded", String(open));
-  });
-}
-
 async function bootstrap() {
   const mode = parseModeFromUrl();
   debugState.mode = mode;
@@ -103,8 +69,6 @@ async function bootstrap() {
   if (mode.www) {
     dom.app.classList.add("mode-www");
   }
-
-  renderModeChips(mode);
 
   setStatus("Loading configuration...");
   const config = await loadConfig("./config/idw-config.json");
@@ -118,7 +82,6 @@ async function bootstrap() {
 
   setupNotice(dom.noticePanel, mode, config);
   const logoDock = setupLogoDock(dom.logoDock, config);
-  setupMobilePanel();
 
   const mapBundle = createMap("map", config, {
     onStatus: (message, level) => setStatus(message, level)
@@ -173,7 +136,6 @@ async function bootstrap() {
 
   function updateVersionDisplays(lastModified) {
     const versionText = formatLastUpdated(lastModified, config.ui.timezone);
-    dom.lastUpdated.textContent = versionText;
     logoDock.setVersionText(versionText);
   }
 

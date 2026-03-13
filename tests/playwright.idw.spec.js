@@ -58,6 +58,6 @@ test('renders IDW map and supports query modes', async ({ page }) => {
   await page.goto('/?notice=no&humidity=yes&www=yes');
 
   await expect(page.locator('#notice-panel')).toBeHidden();
-  await expect(page.locator('#mode-chips')).toContainText('humidity: yes');
-  await expect(page.locator('#mode-chips')).toContainText('www: yes');
+  await expect(page.locator('#left-panel')).toHaveCount(0);
+  await expect(page.locator('#legend-floating')).toBeVisible();
 });

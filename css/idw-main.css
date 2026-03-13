@@ -36,23 +36,22 @@ body {
 .panel,
 .selected-panel,
 .notice-panel,
-.status-pill,
-.mobile-panel-toggle {
+.status-pill {
   backdrop-filter: blur(6px);
 }
 
 .panel {
   position: absolute;
   z-index: 1000;
-  top: 124px;
-  left: 14px;
-  width: 300px;
-  max-height: min(76vh, 700px);
+  top: auto;
+  left: auto;
+  width: 230px;
+  max-height: min(46vh, 340px);
   border: 1px solid var(--panel-border);
   border-radius: 14px;
   background: var(--panel-bg);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
-  padding: 12px;
+  padding: 10px 12px;
   overflow: auto;
 }
 
@@ -64,40 +63,6 @@ body {
   width: 230px;
   max-height: min(46vh, 340px);
   padding: 10px 12px;
-}
-
-.panel-title {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-}
-
-.panel-meta {
-  margin: 10px 0 12px;
-  font-size: 12px;
-  color: var(--text-soft);
-}
-
-.mode-chips {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.mode-chip {
-  border: 1px solid rgba(193, 214, 231, 0.45);
-  border-radius: 999px;
-  padding: 2px 8px;
-  font-size: 11px;
-  color: var(--text-soft);
-}
-
-.mode-chip.is-enabled {
-  color: #dff3ff;
-  border-color: rgba(44, 185, 255, 0.65);
-  background: rgba(44, 185, 255, 0.22);
 }
 
 .selected-panel {
@@ -245,22 +210,6 @@ body {
   background: rgba(80, 12, 20, 0.92);
 }
 
-.mobile-panel-toggle {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 98px;
-  z-index: 1100;
-  border: 1px solid var(--panel-border);
-  border-radius: 999px;
-  background: rgba(6, 14, 26, 0.92);
-  color: var(--text-main);
-  padding: 8px 14px;
-  font-size: 13px;
-  font-weight: 700;
-}
-
 .idw-canvas-layer {
   image-rendering: auto;
 }
@@ -269,27 +218,12 @@ body {
   image-rendering: auto;
 }
 
-.mode-www #left-panel,
 .mode-www #notice-panel {
   opacity: 0.92;
 }
 
 @media (max-width: 768px) {
   .panel {
-    width: calc(100% - 20px);
-    left: 10px;
-    right: 10px;
-    bottom: 180px;
-    top: auto;
-    display: none;
-    max-height: 48vh;
-  }
-
-  .panel.is-mobile-open {
-    display: block;
-  }
-
-  .panel-legend {
     width: min(260px, calc(100% - 20px));
     right: 10px;
     left: auto;
@@ -298,10 +232,13 @@ body {
     max-height: 34vh;
   }
 
-  .mobile-panel-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .panel-legend {
+    width: inherit;
+    right: inherit;
+    left: inherit;
+    bottom: inherit;
+    display: inherit;
+    max-height: inherit;
   }
 
   .selected-panel {
