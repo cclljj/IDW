@@ -1,8 +1,8 @@
-import { formatDateTime } from "../core/time.js";
-
 export function setupLogoDock(container, config) {
   if (!container) {
-    return;
+    return {
+      setVersionText() {}
+    };
   }
 
   const links = document.createElement("div");
@@ -24,18 +24,16 @@ export function setupLogoDock(container, config) {
     links.appendChild(anchor);
   });
 
-  const clock = document.createElement("div");
-  clock.className = "logo-time";
-
-  const refreshClock = () => {
-    clock.textContent = formatDateTime(Date.now(), {
-      timezone: config.ui.timezone
-    });
-  };
-
-  refreshClock();
-  window.setInterval(refreshClock, 1000);
+  const version = document.createElement("div");
+  version.className = "logo-time";
+  version.textContent = "Last updated: loading...";
 
   container.innerHTML = "";
-  container.append(links, clock);
+  container.append(links, version);
+
+  return {
+    setVersionText(text) {
+      version.textContent = text || "Last updated: unknown";
+    }
+  };
 }

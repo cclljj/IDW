@@ -117,7 +117,7 @@ async function bootstrap() {
   }
 
   setupNotice(dom.noticePanel, mode, config);
-  setupLogoDock(dom.logoDock, config);
+  const logoDock = setupLogoDock(dom.logoDock, config);
   setupMobilePanel();
 
   const mapBundle = createMap("map", config, {
@@ -171,7 +171,13 @@ async function bootstrap() {
     displayPanel.showSensor(nearest.point, activeDefinition.title, nearest.distanceMeters);
   });
 
-  dom.lastUpdated.textContent = formatLastUpdated(initialPayload.lastModified, config.ui.timezone);
+  function updateVersionDisplays(lastModified) {
+    const versionText = formatLastUpdated(lastModified, config.ui.timezone);
+    dom.lastUpdated.textContent = versionText;
+    logoDock.setVersionText(versionText);
+  }
+
+  updateVersionDisplays(initialPayload.lastModified);
 
   if (Object.keys(initialPayload.errors).length > 0) {
     setStatus("Partial data loaded; some sources are unavailable.", "warning");
@@ -190,7 +196,7 @@ async function bootstrap() {
       });
 
       layerManager.updateDatasets(payload.datasets);
-      dom.lastUpdated.textContent = formatLastUpdated(payload.lastModified, config.ui.timezone);
+      updateVersionDisplays(payload.lastModified);
 
       if (Object.keys(payload.errors).length > 0) {
         setStatus("Updated with degraded sources.", "warning");

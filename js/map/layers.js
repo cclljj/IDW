@@ -107,7 +107,7 @@ export function buildLayers(map, datasets, config, mode, hooks = {}) {
 
   const control = L.control.layers(baseLayers, overlayLayers, {
     collapsed: mode.www,
-    position: "topright"
+    position: "topleft"
   }).addTo(map);
 
   function notifyActiveLayerChanged() {

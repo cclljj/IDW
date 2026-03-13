@@ -38,7 +38,7 @@ export function createMap(containerId, config, options = {}) {
   });
 
   primaryTile.addTo(map);
-  L.control.scale({ position: "bottomright" }).addTo(map);
+  L.control.scale({ position: "topright" }).addTo(map);
 
   return {
     map,

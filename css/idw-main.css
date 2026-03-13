@@ -44,7 +44,7 @@ body {
 .panel {
   position: absolute;
   z-index: 1000;
-  top: 14px;
+  top: 124px;
   left: 14px;
   width: 300px;
   max-height: min(76vh, 700px);
@@ -54,6 +54,16 @@ body {
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
   padding: 12px;
   overflow: auto;
+}
+
+.panel-legend {
+  top: auto;
+  left: auto;
+  right: 14px;
+  bottom: 112px;
+  width: 230px;
+  max-height: min(46vh, 340px);
+  padding: 10px 12px;
 }
 
 .panel-title {
@@ -277,6 +287,15 @@ body {
 
   .panel.is-mobile-open {
     display: block;
+  }
+
+  .panel-legend {
+    width: min(260px, calc(100% - 20px));
+    right: 10px;
+    left: auto;
+    bottom: 190px;
+    display: block;
+    max-height: 34vh;
   }
 
   .mobile-panel-toggle {
