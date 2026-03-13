@@ -1,0 +1,63 @@
+/* Layer control styling for Leaflet's built-in panel */
+.leaflet-control-layers {
+  border-radius: 12px;
+  border: 1px solid rgba(179, 220, 255, 0.44);
+  background: rgba(9, 21, 37, 0.92);
+  color: #ecf7ff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-control-layers-expanded {
+  padding: 10px 12px;
+  min-width: 220px;
+}
+
+.leaflet-control-layers-base label,
+.leaflet-control-layers-overlays label {
+  color: #ecf7ff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.leaflet-control-layers-separator {
+  border-top-color: rgba(183, 220, 255, 0.25);
+}
+
+.idw-legend {
+  margin-top: 8px;
+}
+
+.legend-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.legend-note {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  color: rgba(245, 251, 255, 0.75);
+  font-size: 12px;
+}
+
+.legend-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}

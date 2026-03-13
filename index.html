@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>LASS: IDW Diagram (Modernized)</title>
+
+    <meta property="og:title" content="LASS: IDW Diagram" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pm25.lass-net.org/GIS/IDW/" />
+    <meta property="og:description" content="Inverse Distance Weighting (IDW) Diagram of Open PM2.5 Data Portal" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./css/idw-main.css" />
+    <link rel="stylesheet" href="./css/idw-controls.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="map" aria-label="IDW map"></div>
+
+      <aside id="left-panel" class="panel" aria-label="Layer and legend panel">
+        <div class="panel-header-row">
+          <h1 class="panel-title">IDW Layers</h1>
+        </div>
+        <div id="mode-chips" class="mode-chips" aria-label="Query mode flags"></div>
+        <p id="last-updated" class="panel-meta">Last updated: loading...</p>
+        <div id="legend" class="idw-legend" aria-label="Legend"></div>
+      </aside>
+
+      <section id="display-panel" class="selected-panel" aria-live="polite"></section>
+
+      <div id="logo-dock" class="logo-dock" aria-label="Partner links and current time"></div>
+
+      <section id="notice-panel" class="notice-panel" hidden aria-live="polite">
+        <div class="notice-header-row">
+          <h2 id="notice-title">Notice</h2>
+          <button class="notice-close" type="button" aria-label="Close notice">×</button>
+        </div>
+        <p id="notice-body"></p>
+      </section>
+
+      <button id="mobile-panel-toggle" class="mobile-panel-toggle" type="button" aria-expanded="false">
+        Layers & Legend
+      </button>
+
+      <div id="status" class="status-pill" aria-live="polite">Initializing...</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+{
+  "map": {
+    "center": [23.77, 120.88],
+    "zoom": 8,
+    "minZoom": 4,
+    "maxZoom": 16
+  },
+  "tiles": {
+    "primary": {
+      "url": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "attribution": "&copy; <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+    },
+    "fallback": {
+      "url": "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+      "attribution": "&copy; <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, HOT"
+    }
+  },
+  "datasets": {
+    "airbox": {
+      "source": "AirBox",
+      "urls": [
+        "./data/data.json",
+        "https://pm25.lass-net.org/GIS/IDW/data/data.json"
+      ]
+    },
+    "cwb": {
+      "source": "CWB",
+      "urls": [
+        "./data/cwb.json",
+        "https://pm25.lass-net.org/GIS/IDW/data/cwb.json"
+      ]
+    },
+    "epa": {
+      "source": "EPA",
+      "urls": [
+        "./data/epa.json",
+        "https://pm25.lass-net.org/GIS/IDW/data/epa.json"
+      ]
+    },
+    "calibration": {
+      "source": "Calibration",
+      "urls": [
+        "./data/calibration.json",
+        "https://pm25.lass-net.org/GIS/IDW/data/calibration.json"
+      ]
+    },
+    "epaiot": {
+      "source": "EPAIoT",
+      "urls": [
+        "./data/epaiot.json",
+        "https://pm25.lass-net.org/GIS/IDW/data/epaiot.json"
+      ]
+    }
+  },
+  "layers": {
+    "defaultBaseLayer": "pm25-airbox",
+    "wwwDefaultLayer": "pm25-airbox",
+    "contourInterval": 10,
+    "contourLineWidth": 1.1,
+    "contourOpacity": 0.85,
+    "definitions": [
+      {
+        "id": "pm25-airbox",
+        "title": "AirBox PM2.5",
+        "dataset": "airbox",
+        "valueField": "pm25",
+        "gradientPreset": "pm25",
+        "minVal": 0,
+        "maxVal": 150,
+        "contourInterval": 10,
+        "idw": {
+          "opacity": 0.55,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 10
+        }
+      },
+      {
+        "id": "temp-airbox",
+        "title": "AirBox Temperature",
+        "dataset": "airbox",
+        "valueField": "temperature",
+        "gradientPreset": "temperature",
+        "minVal": -10,
+        "maxVal": 60,
+        "contourInterval": 5,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 10
+        }
+      },
+      {
+        "id": "humidity-airbox",
+        "title": "AirBox Humidity",
+        "dataset": "airbox",
+        "valueField": "humidity",
+        "gradientPreset": "humidity",
+        "minVal": 0,
+        "maxVal": 100,
+        "contourInterval": 10,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 10
+        }
+      },
+      {
+        "id": "temp-cwb",
+        "title": "CWB Temperature",
+        "dataset": "cwb",
+        "valueField": "temperature",
+        "fallbackFields": ["pm25"],
+        "gradientPreset": "temperature",
+        "minVal": -10,
+        "maxVal": 60,
+        "contourInterval": 5,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 10
+        }
+      },
+      {
+        "id": "pm25-epa",
+        "title": "EPA PM2.5",
+        "dataset": "epa",
+        "valueField": "pm25",
+        "gradientPreset": "pm25",
+        "minVal": 0,
+        "maxVal": 150,
+        "contourInterval": 10,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 25
+        }
+      },
+      {
+        "id": "pm25-calibration",
+        "title": "Calibration PM2.5",
+        "dataset": "calibration",
+        "valueField": "pm25",
+        "gradientPreset": "pm25",
+        "minVal": 0,
+        "maxVal": 150,
+        "contourInterval": 10,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 12
+        }
+      },
+      {
+        "id": "pm25-epaiot",
+        "title": "EPAIoT PM2.5",
+        "dataset": "epaiot",
+        "valueField": "pm25",
+        "gradientPreset": "pm25",
+        "minVal": 0,
+        "maxVal": 150,
+        "contourInterval": 10,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 10
+        }
+      },
+      {
+        "id": "compare-epa",
+        "title": "Calibration / EPA Ratio",
+        "dataset": "compare",
+        "valueField": "ratio",
+        "gradientPreset": "compare",
+        "minVal": 0,
+        "maxVal": 6,
+        "contourInterval": 0.5,
+        "idw": {
+          "opacity": 0.52,
+          "cellSize": 14,
+          "exp": 2,
+          "station_range": 10
+        }
+      }
+    ]
+  },
+  "ui": {
+    "timezone": "Asia/Taipei",
+    "notice": {
+      "enabled": true,
+      "title": "LASS IDW Notice",
+      "message": "This page shows interpolated values generated from available stations. Data is near real-time and may include incomplete or delayed sensors."
+    },
+    "logos": [
+      {
+        "label": "Academia Sinica",
+        "href": "https://www.iis.sinica.edu.tw/index_zh.html",
+        "image": "./images/AS-logo.png"
+      },
+      {
+        "label": "LASS",
+        "href": "https://lass-net.org/",
+        "image": "./images/LASS-logo.png"
+      },
+      {
+        "label": "GitHub Repository",
+        "href": "https://github.com/cclljj/Voronoi",
+        "image": "./images/GHRepo-logo.png"
+      }
+    ]
+  },
+  "polling": {
+    "baseIntervalMs": 300000,
+    "maxIntervalMs": 900000
+  }
+}
